@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Device Form</title>
+</head>
+<body>
+    <form method="post">
+        <label>
+            <b>Device Price:</b>
+            <input type="number" name="price" value="<%= locals.body?.price %>">
+        </label>
+        <hr>
+        <label><b>Type:</b>
+            <label>
+                <input type="radio" name="type" value="router" 
+                    <%= locals.body?.type === 'router' ? 'checked' : '' %>
+                >
+                Router 
+            </label>
+            <label>
+                <input type="radio" name="type" value="switch"
+                <%= locals.body?.type === 'switch' ? 'checked' : '' %>
+                > 
+                Switch
+            </label>
+            <label>
+                <input type="radio" name="type" value="firewall"
+                <%= locals.body?.type === 'firewall' ? 'checked' : '' %>
+                > 
+                Firewall
+            </label>
+        </label>
+        <hr>
+        <label>
+            <b>Serial-number: </b>
+            <input type="text" name="serial" value="<%= locals.body?.serial %>">
+        </label>
+        <hr>
+        <button type="submit">Add new device</button>
+        <hr>
+
+        <% if(locals.errors && locals.errors.length > 0) { %>
+            <ul style="color: red;">
+                <% locals.errors.forEach(e => { %>
+                  <li><%= e %> </li>
+                <% }) %>
+            </ul>
+        <% }%>
+
+        <% if(locals.success) { %>
+            <p style="color: darkgreen;"><b>Device Added</b> </p>   
+        <%}%>
+
+    </form>
+</body>
+</html>
